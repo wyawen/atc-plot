@@ -1,0 +1,100 @@
+Config_file:C:\CPUBully\.\input.ini
+Millisecs:1
+NumberOfActiveWorkers: 12
+NumberOfLogicalProcessors: 12
+StopFlag:False
+Worker:CPUBoundSum
+PinnedThreads: False
+RandomWorkerPausing: False
+ProcessAffinityMask: 0
+Millisecs:60000
+NumberOfActiveWorkers: 12
+NumberOfLogicalProcessors: 12
+StopFlag:False
+Worker:CPUBoundSum
+PinnedThreads: False
+RandomWorkerPausing: False
+ProcessAffinityMask: 0
+Processor count:12
+Current run:1/1/2020 9:08:36 AM
+Process Id:5200
+
+ThreadPool::GetMinThreads workerThreads:20, completionPortThreads:12
+ThreadPool::GetMaxThreads workerThreads:2047, completionPortThreads:1000
+Start! Worker: 0, Thread: 3, Count: 0
+Start! Worker: 1, Thread: 4, Count: 0
+Start! Worker: 3, Thread: 6, Count: 0
+Start! Worker: 4, Thread: 15, Count: 0
+Start! Worker: 6, Thread: 9, Count: 0
+Start! Worker: 7, Thread: 10, Count: 0
+Start! Worker: 8, Thread: 11, Count: 0
+Start! Worker: 2, Thread: 5, Count: 0
+Start! Worker: 9, Thread: 12, Count: 0
+Start! Worker: 5, Thread: 8, Count: 0
+Start! Worker: 11, Thread: 14, Count: 0
+Start! Worker: 10, Thread: 13, Count: 0
+Combined Progress: 0, sec: 1.0156864, rate: 0
+Combined Progress: 0, sec: 2.2188719, rate: 0
+Combined Progress: 0, sec: 3.3907991, rate: 0
+Combined Progress: 3, sec: 4.5973133, rate: 0.652555047749302
+Combined Progress: 12, sec: 5.7815233, rate: 2.07557755583204
+Combined Progress: 12, sec: 6.9690653, rate: 1.72189518729291
+Combined Progress: 12, sec: 8.1133539, rate: 1.47904308722438
+Combined Progress: 12, sec: 9.1566371, rate: 1.31052479954677
+Combined Progress: 24, sec: 10.3008824, rate: 2.32989748528728
+Combined Progress: 24, sec: 11.3754512, rate: 2.10980642244767
+Combined Progress: 24, sec: 12.550145, rate: 1.91232850297746
+Combined Progress: 24, sec: 13.7216638, rate: 1.74905903174803
+Combined Progress: 32, sec: 14.9404533, rate: 2.14183595085432
+Combined Progress: 36, sec: 16.0318227, rate: 2.24553381569021
+Combined Progress: 36, sec: 17.2506351, rate: 2.08687968827304
+Combined Progress: 36, sec: 18.4538173, rate: 1.95081588891638
+Combined Progress: 44, sec: 19.5319899, rate: 2.25271466068084
+Combined Progress: 48, sec: 20.6570378, rate: 2.32366326986147
+Combined Progress: 48, sec: 21.8289558, rate: 2.19891415969609
+Combined Progress: 48, sec: 22.9071194, rate: 2.09541842262367
+Combined Progress: 56, sec: 24.0634085, rate: 2.32718486244374
+Combined Progress: 58, sec: 25.2665705, rate: 2.29552324879231
+Combined Progress: 60, sec: 26.422854, rate: 2.27076151576964
+Combined Progress: 60, sec: 27.6112149, rate: 2.17303006105682
+Combined Progress: 66, sec: 28.8297771, rate: 2.28929969770734
+Combined Progress: 69, sec: 29.9932051, rate: 2.30052106035177
+Combined Progress: 72, sec: 31.1885943, rate: 2.30853623306774
+Combined Progress: 72, sec: 32.3917437, rate: 2.22278864227985
+Combined Progress: 78, sec: 33.5948913, rate: 2.32178158588059
+Combined Progress: 81, sec: 34.7980372, rate: 2.32771749551437
+Combined Progress: 84, sec: 35.8918058, rate: 2.34036705949189
+Combined Progress: 84, sec: 37.0168267, rate: 2.26923827590008
+Combined Progress: 89, sec: 38.2087235, rate: 2.32931100145233
+Combined Progress: 93, sec: 39.4091824, rate: 2.35985611312758
+Combined Progress: 96, sec: 40.5793703, rate: 2.36573409814592
+Combined Progress: 96, sec: 41.7825091, rate: 2.29761213646214
+Combined Progress: 104, sec: 43.0012725, rate: 2.41853307945713
+Combined Progress: 105, sec: 44.2044095, rate: 2.37532864227041
+Combined Progress: 107, sec: 45.4104749, rate: 2.35628454086042
+Combined Progress: 109, sec: 46.5794316, rate: 2.34008866694715
+Combined Progress: 116, sec: 47.7669522, rate: 2.4284572210994
+Combined Progress: 117, sec: 48.8920289, rate: 2.39302811996824
+Combined Progress: 119, sec: 49.9724421, rate: 2.38131247942353
+Combined Progress: 122, sec: 51.0952902, rate: 2.3876956079995
+Combined Progress: 127, sec: 52.2066814, rate: 2.43263882312198
+Combined Progress: 129, sec: 53.4079147, rate: 2.41537234180761
+Combined Progress: 132, sec: 54.6267235, rate: 2.41639973153433
+Combined Progress: 135, sec: 55.7048966, rate: 2.42348533503965
+Combined Progress: 140, sec: 56.9080716, rate: 2.46010796120528
+Combined Progress: 141, sec: 58.001864, rate: 2.43095635685088
+Combined Progress: 143, sec: 59.2050325, rate: 2.41533521664734
+Combined Progress: 147, sec: 60.220692, rate: 2.44102143495794
+End! Worker: 4, Thread: 15, Count: 12
+End! Worker: 11, Thread: 14, Count: 13
+End! Worker: 3, Thread: 6, Count: 12
+End! Worker: 8, Thread: 11, Count: 12
+End! Worker: 5, Thread: 8, Count: 12
+End! Worker: 7, Thread: 10, Count: 12
+End! Worker: 9, Thread: 12, Count: 12
+End! Worker: 2, Thread: 5, Count: 12
+End! Worker: 0, Thread: 3, Count: 13
+End! Worker: 10, Thread: 13, Count: 12
+End! Worker: 1, Thread: 4, Count: 13
+End! Worker: 6, Thread: 9, Count: 12
+Combined Progress: 147, sec: 61.2391429, rate: 2.40042549648421

@@ -1,0 +1,1287 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20200114065355
+Username: NORTHAMERICA\v-yawenw
+RunAs User: NORTHAMERICA\v-yawenw
+Configuration Name: 
+Machine: GCR-SANDBOX-010 (Microsoft Windows NT 10.0.17763.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+Process ID: 10992
+PSVersion: 5.1.17763.771
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.17763.771
+BuildVersion: 10.0.17763.771
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\hvm\Results-010\indexserve\new-var-delay\bully\500qps\results-0114T0653-no-harvesting-5ms\log.txt
+{
+    "abs_dir":  "C:\\hvm\\local-abs",
+    "abs_appsettings":  "appsettings.json",
+    "abs_data_dir":  "C:\\hvm\\abs-data",
+    "registry":  "C:\\hvm\\HarvestVM\\abs-registry",
+    "logger":  "C:\\hvm\\HypervMinrootLogger.exe",
+    "CpuGroups":  "C:\\hvm\\CpuGroups.exe",
+    "result_dir_base":  "C:\\hvm\\Results-010",
+    "reuse_existing_vm_instances":  false,
+    "buffer_sizes":  "0",
+    "iterations":  3,
+    "hvmagent_modes":  "SmartDisjoint_CpuGroups-10-sleep_ms",
+    "cpugroups_delay":  10000,
+    "ipi_delay":  1000,
+    "MinRootMask":  0,
+    "HvmVCPUs":  12,
+    "HvmTimeoutMin":  1,
+    "HvmHwThreadCountPerCore":  1,
+    "HvmAgentAffinity":  0,
+    "hvmagent":  {
+                     "path":  "C:\\hvm\\hvmagent.exe",
+                     "extra_args":  " --pin_primary "
+                 },
+    "smart_hvmagent":  {
+                           "path":  "C:\\hvm\\harvestvm.exe",
+                           "duration_sec":  62,
+                           "extra_args":  ""
+                       },
+    "LatSensitive":  {
+                         "vcpus":  6,
+                         "HwThreadCountPerCore":  1,
+                         "WorkerCnt":  4,
+                         "Duration":  62,
+                         "TracePath":  "trace-4-worker-80-qps-0.2-load-2-wakeups-const.txt"
+                     },
+    "CPUBully":  {
+                     "vcpus":  10,
+                     "HwThreadCountPerCore":  1,
+                     "Timeout":  1,
+                     "Workers":  12,
+                     "WarmupSeconds":  0
+                 },
+    "Memcached":  {
+                      "vcpus":  10,
+                      "ServerThreads":  10,
+                      "ServerMemoryMB":  4096,
+                      "ClientThreads":  6,
+                      "ClientQps":  100000,
+                      "HwThreadCountPerCore":  1,
+                      "DurationSec":  60
+                  },
+    "IndexServe":  {
+                       "vcpus":  11,
+                       "HwThreadCountPerCore":  1,
+                       "GetCaptionXLAWarmUpLogParameters":  "-q -SaasQueryPlan -LargeQueryLog -uniqueTraceIds -printPercentileLatencies -n 5 -c 10",
+                       "WarmUpLogPath":  "D:\\data\\querylogs\\warmup_query.log",
+                       "WarmUpLogQps":  2000,
+                       "RunWarmUpQueries":  1,
+                       "GetCaptionXLAQueryLogParameters":  "-q -SaasQueryPlan -LargeQueryLog -uniqueTraceIds -printPercentileLatencies -n 5 -c 10",
+                       "QueryLogPath":  "D:\\data\\querylogs\\PROD_2019-07-01_WebPrecision_Draco_25262_saaslego.tsv",
+                       "QueryLogPath_1":  "D:\\data\\querylogs\\warmup_query.log",
+                       "Orig_QueryLogPath":  "D:\\data\\querylogs\\PROD_2017-08-29_WebPrecision_Draco_24714.tsv",
+                       "QueryLogQps":  500,
+                       "DurationSec":  60,
+                       "SaasQueryPlan":  " -SaasQueryPlan -LargeQueryLog ",
+                       "WarmupSeconds":  10
+                   },
+    "TeraSort":  {
+                     "vcpus":  10,
+                     "records":  10000000,
+                     "HwThreadCountPerCore":  1
+                 },
+    "PTeraSort":  {
+                      "vcpus":  10,
+                      "records":  10000000,
+                      "HwThreadCountPerCore":  1
+                  },
+    "HDInsight":  {
+                      "vcpus":  10,
+                      "Workers":  12,
+                      "Epochs":  2,
+                      "HwThreadCountPerCore":  1
+                  },
+    "PHDInsight":  {
+                       "vcpus":  10,
+                       "Workers":  12,
+                       "Epochs":  2,
+                       "HwThreadCountPerCore":  1
+                   },
+    "HostCountersFile":  "HostPerformanceCounters.csv",
+    "HostCounters":  [
+                         "\\Hyper-V Hypervisor Virtual Processor(_Total)\\% Total Run Time",
+                         "\\Hyper-V Hypervisor Virtual Processor(_Total)\\CPU Wait Time Per Dispatch",
+                         "\\Hyper-V Hypervisor Logical Processor(_Total)\\% Total Run Time",
+                         "\\Hyper-V Hypervisor Logical Processor(_Total)\\% Hypervisor Run Time",
+                         "\\Hyper-V Hypervisor Logical Processor(_Total)\\% Guest Run Time",
+                         "\\Hyper-V Hypervisor Virtual Processor(*)\\% Total Run Time",
+                         "\\Hyper-V Hypervisor Logical Processor(*)\\% Total Run Time",
+                         "\\Hyper-V Hypervisor Logical Processor(*)\\% Guest Run Time"
+                     ]
+}
+
+********************************
+*** Running Test:
+***     hvmagent-mode: SmartDisjoint_CpuGroups-10-sleep_ms
+***     buffer-size:   0
+***     Iter:  0  /   + 2
+********************************
+
+
+    Directory: C:\hvm\Results-010\indexserve\new-var-delay\bully\500qps\results-0114T0653-no-harvesting-5ms\SmartDisjoi
+    nt_CpuGroups-10-sleep_ms\buf-0
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+d-----        1/14/2020   6:53 AM                0
+Removing existing CpuGroups
+
+
+Removed existing CpuGroups
+primary_names = IndexServe
+hvm_names = CPUBully
+--buffer 0 --csv C:\hvm\Results-010\indexserve\new-var-delay\bully\500qps\results-0114T0653-no-harvesting-5ms\SmartDisjoint_CpuGroups-10-sleep_ms\buf-0\0\hvmagent.csv --duration_sec 60 --primary_size 11  --primary_names IndexServe  --hvm_names CPUBully --debug_peak 0 --logging 1 --minroot_mask 0xfff --reactive_buffer_mode 0 --delay_ms 0 --mode Disjoint_CpuGroups  --learning_algo csoaa --learning_mode 0 --learning_ms 5 --debug 0 --no_harvesting 1 --primary_alone 0 --timing 0 --feedback 0 --feedback_ms 0 --sleep_ms 10 --drop_bad_features 0 --read_cpu_sleep_us 50 --update_primary 1 --pred_one_over 0 --fixed_delay 0
+info: AzureBenchmarkSuite.Program[0]
+      Running Azure Benchmark Suite
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenarios path: C:\hvm\HarvestVM\abs-registry\.\Scenarios
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.BullyAlone.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.HDInsight.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.HDInsightHVM.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.IndexServeAlone.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.IndexServeHDInsight.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.IndexServeHVM.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.IndexServeHVMMultiple-500-1500.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.IndexServeHVMMultiple-mem-500.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.IndexServeHVMMultiple.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.IndexServeTeraSort.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.InterfereAloneCPUGroups.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.InterfereCPUGroups.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.InterfereHVM.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.InterfereHVMMultiplePrimary.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.InterfereHVMSetupOnly.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.LatSensitiveAlone.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.LatSensitiveHDInsight.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.MemcachedAlone.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.MemcachedHDInsight.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.MemcachedHVM.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.MemcachedHVMMultiple.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.MemcachedSeparate.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.MemcachedSeparateHVM.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.MemcachedTeraSort.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.TeraSort.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.TeraSortHVM.json
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+      Checking available resources.
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+      Number of Logical Cores: 3. Required Logical Cores: 23.
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+      Execute Scenario: Gen5.IndexServeHVM
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+
+************************ setting up VMs *************************************
+
+info: AzureBenchmarkSuite.Benchmarks.SetupVMStep[0]
+      [ABS] Benchmark name is IndexServe
+info: AzureBenchmarkSuite.Benchmarks.SetupVMStep[0]
+      [ABS] Benchmark name is CPUBully
+info: AzureBenchmarkSuite.PSWrapper[0]
+      BenchmarkSpecification AzureBenchmarkSuite.Config.BenchmarkVMSpec
+info: AzureBenchmarkSuite.PSWrapper[0]
+      BenchmarkSpecification AzureBenchmarkSuite.Config.BenchmarkVMSpec
+info: AzureBenchmarkSuite.PSWrapper[0]
+      VHD C:\hvm\abs-data\IndexServe-0-0-OS-VHD.vhd already exists on host. Will not copy again.
+info: AzureBenchmarkSuite.PSWrapper[0]
+      VHD C:\hvm\abs-data\CPUBully-1-0-OS-VHD.vhd already exists on host. Will not copy again.
+info: AzureBenchmarkSuite.PSWrapper[0]
+      VHD C:\hvm\abs-data\IndexServe-0-0-SaaS-Data-and-App-Folders-Drive-D-In-Target-VM-VHD.vhd already exists on host.
+Will not copy again.
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Creating VM CPUBully-1-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Creating VM IndexServe-0-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Setting virtual cores and memory for CPUBully-1-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Setting virtual cores and memory for IndexServe-0-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Setting HwThreadsPerCore for CPUBully-1-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Setting HwThreadsPerCore for IndexServe-0-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Setting static memory configuration for VM
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Setting static memory configuration for VM
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Creating checkpoint for VM CPUBully-1-0 before running the experiments.
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Attaching VHD C:\hvm\abs-data\IndexServe-0-0-SaaS-Data-and-App-Folders-Drive-D-In-Target-VM-VHD.vhd to vm IndexSer
+ve-0-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Setting Automatic Stop Action to TurnOff for IndexServe-0-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Starting VM CPUBully-1-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Getting list of NVMe devices
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Disabling NVMe device PCIROOT(AE)#PCI(0000)#PCI(0000) on host
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Dismounting NVMe device PCIROOT(AE)#PCI(0000)#PCI(0000) from host
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Assigning NVMe device PCIROOT(AE)#PCI(0000)#PCI(0000) to IndexServe-0-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Assigned NVMe device PCIROOT(AE)#PCI(0000)#PCI(0000) to IndexServe-0-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Creating checkpoint for VM IndexServe-0-0 before running the experiments.
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Starting VM IndexServe-0-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      VM CPUBully-1-0 is accepting commands.
+info: AzureBenchmarkSuite.PSWrapper[0]
+      VM CPUBully-1-0 is ready.
+Script completed.
+info: AzureBenchmarkSuite.PSWrapper[0]
+      VM IndexServe-0-0 is accepting commands.
+info: AzureBenchmarkSuite.PSWrapper[0]
+      VM IndexServe-0-0 is ready.
+Script completed.
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+      Setting of VMs completed.
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+
+************************ setting up benchmarks *************************************
+
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Copying dependencies, and generating test data.
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Copying dependencies, and generating test data.
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Changing E: to K:
+Script completed.
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Starting SaaSDataService
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Starting Saas service
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Truncating query log to 30000 queries
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Checking if Saas is started
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Sleeping for 60 seconds
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Checking if Saas is started..
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Sleeping for 60 seconds
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Checking if Saas is started..
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Sleeping for 60 seconds
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Checking if Saas is started..
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Sleeping for 60 seconds
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Checking if Saas is started..
+info: AzureBenchmarkSuite.PSWrapper[0]
+      SaaS and SaaSDataService StartUp are completed at 2020-01-14T06:59:18.0137559-08:00
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Running Warmup Queries..
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Running command: .\GetCaptionXLA.exe -q -SaasQueryPlan -LargeQueryLog -uniqueTraceIds -printPercentileLatencies -n
+ 5 -c 10 -WarmupSeconds 10 -f D:\data\querylogs\warmup_query.log 0 2000 0 bla localhost:8400 > D:\SaaS_Results\warmup_re
+s.log 2>$null
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Warmup completed at 2020-01-14T07:00:30.8997668-08:00.
+Script completed.
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+      Setting benchmarks completed.
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+
+************************ Starting host resource monitoring *************************************
+
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+      Setting of host monitoring completed.
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+
+************************ Starting resource monitoring for individual VMs *************************************
+
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Starting vm monitoring for IndexServe-0-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      creating file c:\counters-list.txt
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Starting process typeperf with output file: C:\ResourceLogs\Counters.txt
+Script completed.
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Starting vm monitoring for CPUBully-1-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      creating file c:\counters-list.txt
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Starting process typeperf with output file: C:\ResourceLogs\Counters.txt
+Script completed.
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+      Setting of VM monitoring completed.
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+
+************************ Running benchmarks *************************************
+
+info: AzureBenchmarkSuite.Benchmarks.RunBenchmarkStep[0]
+      Scenario duration is set to 1 seconds
+info: AzureBenchmarkSuite.Benchmarks.RunBenchmarkStep[0]
+      1/14/2020 3:00:34 PM +00:00: Scenario started
+info: AzureBenchmarkSuite.Benchmarks.RunBenchmarkStep[0]
+      Scenario run instance: 0 {0}
+info: AzureBenchmarkSuite.Benchmarks.RunBenchmarkStep[0]
+      Scenario run instance: 0 {0}
+info: AzureBenchmarkSuite.Benchmarks.RunBenchmarkStep[0]
+      01-14-2020-07-00-34-AM: Benchmark is started in IndexServe-0-0
+info: AzureBenchmarkSuite.Benchmarks.RunBenchmarkStep[0]
+      [ABS] Script path: C:\hvm\HarvestVM\abs-registry\.\Benchmarks\IndexServe\.\IndexServeRunBenchmark.ps1
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Running benchmark
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Running .\GetCaptionXLA.exe -q -SaasQueryPlan -LargeQueryLog -uniqueTraceIds -printPercentileLatencies -n 5 -c 10
+-WarmupSeconds 10 -f D:\querylog.tsv 0 500 0 bla localhost:8400 >> D:\IndexServe\FinalResults\query_res.log 2>$null
+info: AzureBenchmarkSuite.Benchmarks.RunBenchmarkStep[0]
+      01-14-2020-07-00-54-AM: Benchmark is started in CPUBully-1-0
+info: AzureBenchmarkSuite.Benchmarks.RunBenchmarkStep[0]
+      [ABS] Script path: C:\hvm\HarvestVM\abs-registry\.\Benchmarks\CPUBully\.\CPUBullyRunBenchmark.ps1
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Running benchmark
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Sleeping 0 seconds before launching hvmagent & CPUBully workload
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Starting hvmagent: C:\hvm\harvestvm.exe.
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Launching CPUBully workload
+info: AzureBenchmarkSuite.PSWrapper[0]
+      1/14/2020 7:00:55 AM +  >>> hvmagent started
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Setting hvmagent process priority class to High
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Launching CPUBully workload
+info: AzureBenchmarkSuite.PSWrapper[0]
+      1/14/2020 7:00:55 AM +  >>> ready to launch bully
+info: AzureBenchmarkSuite.PSWrapper[0]
+      1/14/2020 7:00:55 AM +  >>> starting to run bully
+Num weight bits = 18
+learning rate = 0.1
+initial_t = 0
+power_t = 0
+using no cache
+Reading datafile =
+num sources = 1
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Benchmark completed
+Script completed.
+info: AzureBenchmarkSuite.Benchmarks.RunBenchmarkStep[0]
+      01-14-2020-07-01-48-AM: Benchmark IndexServe is finished in IndexServe-0-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      1/14/2020 7:01:58 AM +  >>> bully finished
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Waiting for hvmagent process
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Benchmark completed
+Script completed.
+info: AzureBenchmarkSuite.Benchmarks.RunBenchmarkStep[0]
+      01-14-2020-07-02-04-AM: Benchmark CPUBully is finished in CPUBully-1-0
+info: AzureBenchmarkSuite.Benchmarks.RunBenchmarkStep[0]
+      1/14/2020 3:02:04 PM +00:00: Scenario completed
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+      Running benchmarks completed.
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+
+************************ Stopping resource monitoring for individual VMs *************************************
+
+Script completed.
+Script completed.
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+      stopped resource monitoring
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+
+************************ Stopping host resource monitoring *************************************
+
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+      stopped host resource monitoring
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+
+************************ Collecting results *************************************
+
+info: AzureBenchmarkSuite.Benchmarks.CollectResultStep[0]
+      [ABS] Collecting results from VM IndexServe-0-0 with IP 192.168.10.20
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Copying D:\IndexServe\FinalResults to C:\hvm\Results-010\indexserve\new-var-delay\bully\500qps\results-0114T0653-n
+o-harvesting-5ms\SmartDisjoint_CpuGroups-10-sleep_ms\buf-0\0\IndexServe-0-0-result
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Copying resource counters to C:\hvm\Results-010\indexserve\new-var-delay\bully\500qps\results-0114T0653-no-harvest
+ing-5ms\SmartDisjoint_CpuGroups-10-sleep_ms\buf-0\0\IndexServe-0-0-result
+Script completed.
+info: AzureBenchmarkSuite.Benchmarks.CollectResultStep[0]
+      [ABS] Parking key metric: C:\hvm\HarvestVM\abs-registry\.\Benchmarks\IndexServe\.\IndexServeParseResults.ps1
+Script completed.
+info: AzureBenchmarkSuite.Benchmarks.CollectResultStep[0]
+      [ABS] Collecting results from VM CPUBully-1-0 with IP 192.168.10.22
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Copying C:\CPUBully\FinalResults to C:\hvm\Results-010\indexserve\new-var-delay\bully\500qps\results-0114T0653-no-
+harvesting-5ms\SmartDisjoint_CpuGroups-10-sleep_ms\buf-0\0\CPUBully-1-0-result
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Copying resource counters to C:\hvm\Results-010\indexserve\new-var-delay\bully\500qps\results-0114T0653-no-harvest
+ing-5ms\SmartDisjoint_CpuGroups-10-sleep_ms\buf-0\0\CPUBully-1-0-result
+Script completed.
+info: AzureBenchmarkSuite.Benchmarks.CollectResultStep[0]
+      [ABS] Parking key metric: C:\hvm\HarvestVM\abs-registry\.\Benchmarks\CPUBully\.\CPUBullyParseResults.ps1
+Script completed.
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+      Collecting results completed.
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+
+************************ Cleaning up ****************************
+
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Stopping VM IndexServe-0-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Stopping VM CPUBully-1-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Restoring checkpoint for VM CPUBully-1-0 to before running the experiments.
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Removing checkpoint CPUBully-1-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Removing vm CPUBully-1-0
+Script completed.
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Restoring checkpoint for VM IndexServe-0-0 to before running the experiments.
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Removing checkpoint IndexServe-0-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Removing all DDA device to host
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Enabling NVMe device 'Standard NVM Express Controller' on host
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Removing vm IndexServe-0-0
+Script completed.
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+      Cleanup completed.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+********************************
+*** Running Test:
+***     hvmagent-mode: SmartDisjoint_CpuGroups-10-sleep_ms
+***     buffer-size:   0
+***     Iter:  1  /   + 2
+********************************
+d-----        1/14/2020   7:02 AM                1
+Removing existing CpuGroups
+
+
+Removed existing CpuGroups
+primary_names = IndexServe
+hvm_names = CPUBully
+--buffer 0 --csv C:\hvm\Results-010\indexserve\new-var-delay\bully\500qps\results-0114T0653-no-harvesting-5ms\SmartDisjoint_CpuGroups-10-sleep_ms\buf-0\1\hvmagent.csv --duration_sec 60 --primary_size 11  --primary_names IndexServe  --hvm_names CPUBully --debug_peak 0 --logging 1 --minroot_mask 0xfff --reactive_buffer_mode 0 --delay_ms 0 --mode Disjoint_CpuGroups  --learning_algo csoaa --learning_mode 0 --learning_ms 5 --debug 0 --no_harvesting 1 --primary_alone 0 --timing 0 --feedback 0 --feedback_ms 0 --sleep_ms 10 --drop_bad_features 0 --read_cpu_sleep_us 50 --update_primary 1 --pred_one_over 0 --fixed_delay 0
+info: AzureBenchmarkSuite.Program[0]
+      Running Azure Benchmark Suite
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenarios path: C:\hvm\HarvestVM\abs-registry\.\Scenarios
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.BullyAlone.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.HDInsight.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.HDInsightHVM.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.IndexServeAlone.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.IndexServeHDInsight.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.IndexServeHVM.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.IndexServeHVMMultiple-500-1500.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.IndexServeHVMMultiple-mem-500.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.IndexServeHVMMultiple.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.IndexServeTeraSort.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.InterfereAloneCPUGroups.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.InterfereCPUGroups.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.InterfereHVM.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.InterfereHVMMultiplePrimary.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.InterfereHVMSetupOnly.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.LatSensitiveAlone.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.LatSensitiveHDInsight.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.MemcachedAlone.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.MemcachedHDInsight.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.MemcachedHVM.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.MemcachedHVMMultiple.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.MemcachedSeparate.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.MemcachedSeparateHVM.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.MemcachedTeraSort.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.TeraSort.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.TeraSortHVM.json
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+      Checking available resources.
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+      Number of Logical Cores: 3. Required Logical Cores: 23.
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+      Execute Scenario: Gen5.IndexServeHVM
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+
+************************ setting up VMs *************************************
+
+info: AzureBenchmarkSuite.Benchmarks.SetupVMStep[0]
+      [ABS] Benchmark name is IndexServe
+info: AzureBenchmarkSuite.Benchmarks.SetupVMStep[0]
+      [ABS] Benchmark name is CPUBully
+info: AzureBenchmarkSuite.PSWrapper[0]
+      BenchmarkSpecification AzureBenchmarkSuite.Config.BenchmarkVMSpec
+info: AzureBenchmarkSuite.PSWrapper[0]
+      BenchmarkSpecification AzureBenchmarkSuite.Config.BenchmarkVMSpec
+info: AzureBenchmarkSuite.PSWrapper[0]
+      VHD C:\hvm\abs-data\IndexServe-0-0-OS-VHD.vhd already exists on host. Will not copy again.
+info: AzureBenchmarkSuite.PSWrapper[0]
+      VHD C:\hvm\abs-data\CPUBully-1-0-OS-VHD.vhd already exists on host. Will not copy again.
+info: AzureBenchmarkSuite.PSWrapper[0]
+      VHD C:\hvm\abs-data\IndexServe-0-0-SaaS-Data-and-App-Folders-Drive-D-In-Target-VM-VHD.vhd already exists on host.
+Will not copy again.
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Creating VM IndexServe-0-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Creating VM CPUBully-1-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Setting virtual cores and memory for CPUBully-1-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Setting virtual cores and memory for IndexServe-0-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Setting HwThreadsPerCore for CPUBully-1-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Setting HwThreadsPerCore for IndexServe-0-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Setting static memory configuration for VM
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Setting static memory configuration for VM
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Creating checkpoint for VM CPUBully-1-0 before running the experiments.
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Attaching VHD C:\hvm\abs-data\IndexServe-0-0-SaaS-Data-and-App-Folders-Drive-D-In-Target-VM-VHD.vhd to vm IndexSer
+ve-0-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Starting VM CPUBully-1-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Setting Automatic Stop Action to TurnOff for IndexServe-0-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Getting list of NVMe devices
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Disabling NVMe device PCIROOT(AE)#PCI(0000)#PCI(0000) on host
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Dismounting NVMe device PCIROOT(AE)#PCI(0000)#PCI(0000) from host
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Assigning NVMe device PCIROOT(AE)#PCI(0000)#PCI(0000) to IndexServe-0-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Assigned NVMe device PCIROOT(AE)#PCI(0000)#PCI(0000) to IndexServe-0-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Creating checkpoint for VM IndexServe-0-0 before running the experiments.
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Starting VM IndexServe-0-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      VM CPUBully-1-0 is accepting commands.
+info: AzureBenchmarkSuite.PSWrapper[0]
+      VM CPUBully-1-0 is ready.
+Script completed.
+info: AzureBenchmarkSuite.PSWrapper[0]
+      VM IndexServe-0-0 is accepting commands.
+info: AzureBenchmarkSuite.PSWrapper[0]
+      VM IndexServe-0-0 is ready.
+Script completed.
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+      Setting of VMs completed.
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+
+************************ setting up benchmarks *************************************
+
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Copying dependencies, and generating test data.
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Copying dependencies, and generating test data.
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Changing E: to K:
+Script completed.
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Starting SaaSDataService
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Starting Saas service
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Truncating query log to 30000 queries
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Checking if Saas is started
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Sleeping for 60 seconds
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Checking if Saas is started..
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Sleeping for 60 seconds
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Checking if Saas is started..
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Sleeping for 60 seconds
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Checking if Saas is started..
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Sleeping for 60 seconds
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Checking if Saas is started..
+info: AzureBenchmarkSuite.PSWrapper[0]
+      SaaS and SaaSDataService StartUp are completed at 2020-01-14T07:07:58.8043031-08:00
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Running Warmup Queries..
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Running command: .\GetCaptionXLA.exe -q -SaasQueryPlan -LargeQueryLog -uniqueTraceIds -printPercentileLatencies -n
+ 5 -c 10 -WarmupSeconds 10 -f D:\data\querylogs\warmup_query.log 0 2000 0 bla localhost:8400 > D:\SaaS_Results\warmup_re
+s.log 2>$null
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Warmup completed at 2020-01-14T07:09:11.7791851-08:00.
+Script completed.
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+      Setting benchmarks completed.
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+
+************************ Starting host resource monitoring *************************************
+
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+      Setting of host monitoring completed.
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+
+************************ Starting resource monitoring for individual VMs *************************************
+
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Starting vm monitoring for IndexServe-0-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      creating file c:\counters-list.txt
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Starting process typeperf with output file: C:\ResourceLogs\Counters.txt
+Script completed.
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Starting vm monitoring for CPUBully-1-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      creating file c:\counters-list.txt
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Starting process typeperf with output file: C:\ResourceLogs\Counters.txt
+Script completed.
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+      Setting of VM monitoring completed.
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+
+************************ Running benchmarks *************************************
+
+info: AzureBenchmarkSuite.Benchmarks.RunBenchmarkStep[0]
+      Scenario duration is set to 1 seconds
+info: AzureBenchmarkSuite.Benchmarks.RunBenchmarkStep[0]
+      1/14/2020 3:09:15 PM +00:00: Scenario started
+info: AzureBenchmarkSuite.Benchmarks.RunBenchmarkStep[0]
+      Scenario run instance: 0 {0}
+info: AzureBenchmarkSuite.Benchmarks.RunBenchmarkStep[0]
+      Scenario run instance: 0 {0}
+info: AzureBenchmarkSuite.Benchmarks.RunBenchmarkStep[0]
+      01-14-2020-07-09-15-AM: Benchmark is started in IndexServe-0-0
+info: AzureBenchmarkSuite.Benchmarks.RunBenchmarkStep[0]
+      [ABS] Script path: C:\hvm\HarvestVM\abs-registry\.\Benchmarks\IndexServe\.\IndexServeRunBenchmark.ps1
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Running benchmark
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Running .\GetCaptionXLA.exe -q -SaasQueryPlan -LargeQueryLog -uniqueTraceIds -printPercentileLatencies -n 5 -c 10
+-WarmupSeconds 10 -f D:\querylog.tsv 0 500 0 bla localhost:8400 >> D:\IndexServe\FinalResults\query_res.log 2>$null
+info: AzureBenchmarkSuite.Benchmarks.RunBenchmarkStep[0]
+      01-14-2020-07-09-35-AM: Benchmark is started in CPUBully-1-0
+info: AzureBenchmarkSuite.Benchmarks.RunBenchmarkStep[0]
+      [ABS] Script path: C:\hvm\HarvestVM\abs-registry\.\Benchmarks\CPUBully\.\CPUBullyRunBenchmark.ps1
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Running benchmark
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Sleeping 0 seconds before launching hvmagent & CPUBully workload
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Starting hvmagent: C:\hvm\harvestvm.exe.
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Launching CPUBully workload
+info: AzureBenchmarkSuite.PSWrapper[0]
+      1/14/2020 7:09:36 AM +  >>> hvmagent started
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Setting hvmagent process priority class to High
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Launching CPUBully workload
+info: AzureBenchmarkSuite.PSWrapper[0]
+      1/14/2020 7:09:36 AM +  >>> ready to launch bully
+info: AzureBenchmarkSuite.PSWrapper[0]
+      1/14/2020 7:09:37 AM +  >>> starting to run bully
+Num weight bits = 18
+learning rate = 0.1
+initial_t = 0
+power_t = 0
+using no cache
+Reading datafile =
+num sources = 1
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Benchmark completed
+Script completed.
+info: AzureBenchmarkSuite.Benchmarks.RunBenchmarkStep[0]
+      01-14-2020-07-10-29-AM: Benchmark IndexServe is finished in IndexServe-0-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      1/14/2020 7:10:38 AM +  >>> bully finished
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Waiting for hvmagent process
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Benchmark completed
+Script completed.
+info: AzureBenchmarkSuite.Benchmarks.RunBenchmarkStep[0]
+      01-14-2020-07-10-44-AM: Benchmark CPUBully is finished in CPUBully-1-0
+info: AzureBenchmarkSuite.Benchmarks.RunBenchmarkStep[0]
+      1/14/2020 3:10:44 PM +00:00: Scenario completed
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+      Running benchmarks completed.
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+
+************************ Stopping resource monitoring for individual VMs *************************************
+
+Script completed.
+Script completed.
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+      stopped resource monitoring
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+
+************************ Stopping host resource monitoring *************************************
+
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+      stopped host resource monitoring
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+
+************************ Collecting results *************************************
+
+info: AzureBenchmarkSuite.Benchmarks.CollectResultStep[0]
+      [ABS] Collecting results from VM IndexServe-0-0 with IP 192.168.10.20
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Copying D:\IndexServe\FinalResults to C:\hvm\Results-010\indexserve\new-var-delay\bully\500qps\results-0114T0653-n
+o-harvesting-5ms\SmartDisjoint_CpuGroups-10-sleep_ms\buf-0\1\IndexServe-0-0-result
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Copying resource counters to C:\hvm\Results-010\indexserve\new-var-delay\bully\500qps\results-0114T0653-no-harvest
+ing-5ms\SmartDisjoint_CpuGroups-10-sleep_ms\buf-0\1\IndexServe-0-0-result
+Script completed.
+info: AzureBenchmarkSuite.Benchmarks.CollectResultStep[0]
+      [ABS] Parking key metric: C:\hvm\HarvestVM\abs-registry\.\Benchmarks\IndexServe\.\IndexServeParseResults.ps1
+Script completed.
+info: AzureBenchmarkSuite.Benchmarks.CollectResultStep[0]
+      [ABS] Collecting results from VM CPUBully-1-0 with IP 192.168.10.22
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Copying C:\CPUBully\FinalResults to C:\hvm\Results-010\indexserve\new-var-delay\bully\500qps\results-0114T0653-no-
+harvesting-5ms\SmartDisjoint_CpuGroups-10-sleep_ms\buf-0\1\CPUBully-1-0-result
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Copying resource counters to C:\hvm\Results-010\indexserve\new-var-delay\bully\500qps\results-0114T0653-no-harvest
+ing-5ms\SmartDisjoint_CpuGroups-10-sleep_ms\buf-0\1\CPUBully-1-0-result
+Script completed.
+info: AzureBenchmarkSuite.Benchmarks.CollectResultStep[0]
+      [ABS] Parking key metric: C:\hvm\HarvestVM\abs-registry\.\Benchmarks\CPUBully\.\CPUBullyParseResults.ps1
+Script completed.
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+      Collecting results completed.
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+
+************************ Cleaning up ****************************
+
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Stopping VM CPUBully-1-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Stopping VM IndexServe-0-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Restoring checkpoint for VM CPUBully-1-0 to before running the experiments.
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Removing checkpoint CPUBully-1-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Removing vm CPUBully-1-0
+Script completed.
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Restoring checkpoint for VM IndexServe-0-0 to before running the experiments.
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Removing checkpoint IndexServe-0-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Removing all DDA device to host
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Enabling NVMe device 'Standard NVM Express Controller' on host
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Removing vm IndexServe-0-0
+Script completed.
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+      Cleanup completed.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+********************************
+*** Running Test:
+***     hvmagent-mode: SmartDisjoint_CpuGroups-10-sleep_ms
+***     buffer-size:   0
+***     Iter:  2  /   + 2
+********************************
+d-----        1/14/2020   7:11 AM                2
+Removing existing CpuGroups
+
+
+Removed existing CpuGroups
+primary_names = IndexServe
+hvm_names = CPUBully
+--buffer 0 --csv C:\hvm\Results-010\indexserve\new-var-delay\bully\500qps\results-0114T0653-no-harvesting-5ms\SmartDisjoint_CpuGroups-10-sleep_ms\buf-0\2\hvmagent.csv --duration_sec 60 --primary_size 11  --primary_names IndexServe  --hvm_names CPUBully --debug_peak 0 --logging 1 --minroot_mask 0xfff --reactive_buffer_mode 0 --delay_ms 0 --mode Disjoint_CpuGroups  --learning_algo csoaa --learning_mode 0 --learning_ms 5 --debug 0 --no_harvesting 1 --primary_alone 0 --timing 0 --feedback 0 --feedback_ms 0 --sleep_ms 10 --drop_bad_features 0 --read_cpu_sleep_us 50 --update_primary 1 --pred_one_over 0 --fixed_delay 0
+info: AzureBenchmarkSuite.Program[0]
+      Running Azure Benchmark Suite
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenarios path: C:\hvm\HarvestVM\abs-registry\.\Scenarios
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.BullyAlone.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.HDInsight.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.HDInsightHVM.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.IndexServeAlone.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.IndexServeHDInsight.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.IndexServeHVM.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.IndexServeHVMMultiple-500-1500.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.IndexServeHVMMultiple-mem-500.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.IndexServeHVMMultiple.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.IndexServeTeraSort.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.InterfereAloneCPUGroups.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.InterfereCPUGroups.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.InterfereHVM.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.InterfereHVMMultiplePrimary.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.InterfereHVMSetupOnly.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.LatSensitiveAlone.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.LatSensitiveHDInsight.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.MemcachedAlone.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.MemcachedHDInsight.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.MemcachedHVM.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.MemcachedHVMMultiple.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.MemcachedSeparate.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.MemcachedSeparateHVM.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.MemcachedTeraSort.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.TeraSort.json
+info: AzureBenchmarkSuite.CommandLine.Command[0]
+      scenario: C:\hvm\HarvestVM\abs-registry\.\Scenarios\Gen5.TeraSortHVM.json
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+      Checking available resources.
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+      Number of Logical Cores: 3. Required Logical Cores: 23.
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+      Execute Scenario: Gen5.IndexServeHVM
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+
+************************ setting up VMs *************************************
+
+info: AzureBenchmarkSuite.Benchmarks.SetupVMStep[0]
+      [ABS] Benchmark name is IndexServe
+info: AzureBenchmarkSuite.Benchmarks.SetupVMStep[0]
+      [ABS] Benchmark name is CPUBully
+info: AzureBenchmarkSuite.PSWrapper[0]
+      BenchmarkSpecification AzureBenchmarkSuite.Config.BenchmarkVMSpec
+info: AzureBenchmarkSuite.PSWrapper[0]
+      BenchmarkSpecification AzureBenchmarkSuite.Config.BenchmarkVMSpec
+info: AzureBenchmarkSuite.PSWrapper[0]
+      VHD C:\hvm\abs-data\IndexServe-0-0-OS-VHD.vhd already exists on host. Will not copy again.
+info: AzureBenchmarkSuite.PSWrapper[0]
+      VHD C:\hvm\abs-data\CPUBully-1-0-OS-VHD.vhd already exists on host. Will not copy again.
+info: AzureBenchmarkSuite.PSWrapper[0]
+      VHD C:\hvm\abs-data\IndexServe-0-0-SaaS-Data-and-App-Folders-Drive-D-In-Target-VM-VHD.vhd already exists on host.
+Will not copy again.
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Creating VM CPUBully-1-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Creating VM IndexServe-0-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Setting virtual cores and memory for CPUBully-1-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Setting virtual cores and memory for IndexServe-0-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Setting HwThreadsPerCore for CPUBully-1-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Setting HwThreadsPerCore for IndexServe-0-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Setting static memory configuration for VM
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Setting static memory configuration for VM
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Creating checkpoint for VM CPUBully-1-0 before running the experiments.
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Attaching VHD C:\hvm\abs-data\IndexServe-0-0-SaaS-Data-and-App-Folders-Drive-D-In-Target-VM-VHD.vhd to vm IndexSer
+ve-0-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Setting Automatic Stop Action to TurnOff for IndexServe-0-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Starting VM CPUBully-1-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Getting list of NVMe devices
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Disabling NVMe device PCIROOT(AE)#PCI(0000)#PCI(0000) on host
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Dismounting NVMe device PCIROOT(AE)#PCI(0000)#PCI(0000) from host
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Assigning NVMe device PCIROOT(AE)#PCI(0000)#PCI(0000) to IndexServe-0-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Assigned NVMe device PCIROOT(AE)#PCI(0000)#PCI(0000) to IndexServe-0-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Creating checkpoint for VM IndexServe-0-0 before running the experiments.
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Starting VM IndexServe-0-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      VM CPUBully-1-0 is accepting commands.
+info: AzureBenchmarkSuite.PSWrapper[0]
+      VM CPUBully-1-0 is ready.
+Script completed.
+info: AzureBenchmarkSuite.PSWrapper[0]
+      VM IndexServe-0-0 is accepting commands.
+info: AzureBenchmarkSuite.PSWrapper[0]
+      VM IndexServe-0-0 is ready.
+Script completed.
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+      Setting of VMs completed.
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+
+************************ setting up benchmarks *************************************
+
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Copying dependencies, and generating test data.
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Copying dependencies, and generating test data.
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Changing E: to K:
+Script completed.
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Starting SaaSDataService
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Starting Saas service
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Truncating query log to 30000 queries
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Checking if Saas is started
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Sleeping for 60 seconds
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Checking if Saas is started..
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Sleeping for 60 seconds
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Checking if Saas is started..
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Sleeping for 60 seconds
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Checking if Saas is started..
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Sleeping for 60 seconds
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Checking if Saas is started..
+info: AzureBenchmarkSuite.PSWrapper[0]
+      SaaS and SaaSDataService StartUp are completed at 2020-01-14T07:16:39.4038505-08:00
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Running Warmup Queries..
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Running command: .\GetCaptionXLA.exe -q -SaasQueryPlan -LargeQueryLog -uniqueTraceIds -printPercentileLatencies -n
+ 5 -c 10 -WarmupSeconds 10 -f D:\data\querylogs\warmup_query.log 0 2000 0 bla localhost:8400 > D:\SaaS_Results\warmup_re
+s.log 2>$null
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Warmup completed at 2020-01-14T07:17:52.2169554-08:00.
+Script completed.
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+      Setting benchmarks completed.
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+
+************************ Starting host resource monitoring *************************************
+
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+      Setting of host monitoring completed.
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+
+************************ Starting resource monitoring for individual VMs *************************************
+
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Starting vm monitoring for IndexServe-0-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      creating file c:\counters-list.txt
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Starting process typeperf with output file: C:\ResourceLogs\Counters.txt
+Script completed.
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Starting vm monitoring for CPUBully-1-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      creating file c:\counters-list.txt
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Starting process typeperf with output file: C:\ResourceLogs\Counters.txt
+Script completed.
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+      Setting of VM monitoring completed.
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+
+************************ Running benchmarks *************************************
+
+info: AzureBenchmarkSuite.Benchmarks.RunBenchmarkStep[0]
+      Scenario duration is set to 1 seconds
+info: AzureBenchmarkSuite.Benchmarks.RunBenchmarkStep[0]
+      1/14/2020 3:17:56 PM +00:00: Scenario started
+info: AzureBenchmarkSuite.Benchmarks.RunBenchmarkStep[0]
+      Scenario run instance: 0 {0}
+info: AzureBenchmarkSuite.Benchmarks.RunBenchmarkStep[0]
+      Scenario run instance: 0 {0}
+info: AzureBenchmarkSuite.Benchmarks.RunBenchmarkStep[0]
+      01-14-2020-07-17-56-AM: Benchmark is started in IndexServe-0-0
+info: AzureBenchmarkSuite.Benchmarks.RunBenchmarkStep[0]
+      [ABS] Script path: C:\hvm\HarvestVM\abs-registry\.\Benchmarks\IndexServe\.\IndexServeRunBenchmark.ps1
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Running benchmark
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Running .\GetCaptionXLA.exe -q -SaasQueryPlan -LargeQueryLog -uniqueTraceIds -printPercentileLatencies -n 5 -c 10
+-WarmupSeconds 10 -f D:\querylog.tsv 0 500 0 bla localhost:8400 >> D:\IndexServe\FinalResults\query_res.log 2>$null
+info: AzureBenchmarkSuite.Benchmarks.RunBenchmarkStep[0]
+      01-14-2020-07-18-16-AM: Benchmark is started in CPUBully-1-0
+info: AzureBenchmarkSuite.Benchmarks.RunBenchmarkStep[0]
+      [ABS] Script path: C:\hvm\HarvestVM\abs-registry\.\Benchmarks\CPUBully\.\CPUBullyRunBenchmark.ps1
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Running benchmark
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Sleeping 0 seconds before launching hvmagent & CPUBully workload
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Starting hvmagent: C:\hvm\harvestvm.exe.
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Launching CPUBully workload
+info: AzureBenchmarkSuite.PSWrapper[0]
+      1/14/2020 7:18:16 AM +  >>> hvmagent started
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Setting hvmagent process priority class to High
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Launching CPUBully workload
+info: AzureBenchmarkSuite.PSWrapper[0]
+      1/14/2020 7:18:16 AM +  >>> ready to launch bully
+info: AzureBenchmarkSuite.PSWrapper[0]
+      1/14/2020 7:18:17 AM +  >>> starting to run bully
+Num weight bits = 18
+learning rate = 0.1
+initial_t = 0
+power_t = 0
+using no cache
+Reading datafile =
+num sources = 1
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Benchmark completed
+Script completed.
+info: AzureBenchmarkSuite.Benchmarks.RunBenchmarkStep[0]
+      01-14-2020-07-19-09-AM: Benchmark IndexServe is finished in IndexServe-0-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      1/14/2020 7:19:19 AM +  >>> bully finished
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Waiting for hvmagent process
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Benchmark completed
+Script completed.
+info: AzureBenchmarkSuite.Benchmarks.RunBenchmarkStep[0]
+      01-14-2020-07-19-25-AM: Benchmark CPUBully is finished in CPUBully-1-0
+info: AzureBenchmarkSuite.Benchmarks.RunBenchmarkStep[0]
+      1/14/2020 3:19:25 PM +00:00: Scenario completed
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+      Running benchmarks completed.
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+
+************************ Stopping resource monitoring for individual VMs *************************************
+
+Script completed.
+Script completed.
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+      stopped resource monitoring
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+
+************************ Stopping host resource monitoring *************************************
+
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+      stopped host resource monitoring
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+
+************************ Collecting results *************************************
+
+info: AzureBenchmarkSuite.Benchmarks.CollectResultStep[0]
+      [ABS] Collecting results from VM IndexServe-0-0 with IP 192.168.10.20
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Copying D:\IndexServe\FinalResults to C:\hvm\Results-010\indexserve\new-var-delay\bully\500qps\results-0114T0653-n
+o-harvesting-5ms\SmartDisjoint_CpuGroups-10-sleep_ms\buf-0\2\IndexServe-0-0-result
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Copying resource counters to C:\hvm\Results-010\indexserve\new-var-delay\bully\500qps\results-0114T0653-no-harvest
+ing-5ms\SmartDisjoint_CpuGroups-10-sleep_ms\buf-0\2\IndexServe-0-0-result
+Script completed.
+info: AzureBenchmarkSuite.Benchmarks.CollectResultStep[0]
+      [ABS] Parking key metric: C:\hvm\HarvestVM\abs-registry\.\Benchmarks\IndexServe\.\IndexServeParseResults.ps1
+Script completed.
+info: AzureBenchmarkSuite.Benchmarks.CollectResultStep[0]
+      [ABS] Collecting results from VM CPUBully-1-0 with IP 192.168.10.22
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Copying C:\CPUBully\FinalResults to C:\hvm\Results-010\indexserve\new-var-delay\bully\500qps\results-0114T0653-no-
+harvesting-5ms\SmartDisjoint_CpuGroups-10-sleep_ms\buf-0\2\CPUBully-1-0-result
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Copying resource counters to C:\hvm\Results-010\indexserve\new-var-delay\bully\500qps\results-0114T0653-no-harvest
+ing-5ms\SmartDisjoint_CpuGroups-10-sleep_ms\buf-0\2\CPUBully-1-0-result
+Script completed.
+info: AzureBenchmarkSuite.Benchmarks.CollectResultStep[0]
+      [ABS] Parking key metric: C:\hvm\HarvestVM\abs-registry\.\Benchmarks\CPUBully\.\CPUBullyParseResults.ps1
+Script completed.
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+      Collecting results completed.
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+
+************************ Cleaning up ****************************
+
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Stopping VM IndexServe-0-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Stopping VM CPUBully-1-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Restoring checkpoint for VM CPUBully-1-0 to before running the experiments.
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Removing checkpoint CPUBully-1-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Removing vm CPUBully-1-0
+Script completed.
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Restoring checkpoint for VM IndexServe-0-0 to before running the experiments.
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Removing checkpoint IndexServe-0-0
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Removing all DDA device to host
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Enabling NVMe device 'Standard NVM Express Controller' on host
+info: AzureBenchmarkSuite.PSWrapper[0]
+      Removing vm IndexServe-0-0
+Script completed.
+info: AzureBenchmarkSuite.Benchmarks.BenchmarkScenarioRunner[0]
+      Cleanup completed.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+**********************
+Windows PowerShell transcript end
+End time: 20200114071957
+**********************

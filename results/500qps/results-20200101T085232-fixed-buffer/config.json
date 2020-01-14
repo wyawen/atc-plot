@@ -1,0 +1,76 @@
+{
+    "abs_dir":  "C:\\hvm\\local-abs",
+    "abs_appsettings":  "appsettings.json",
+    "abs_data_dir":  "C:\\hvm\\abs-data",
+    "registry":  "C:\\hvm\\HarvestVM\\abs-registry",
+    "logger":  "C:\\hvm\\HypervMinrootLogger.exe",
+    "LoggerTimeoutSec":  0,
+    "CpuGroups":  "C:\\hvm\\CpuGroups.exe",
+    "result_dir_base":  "C:\\hvm\\Results-010",
+    "reuse_existing_vm_instances":  false,
+    "buffer_sizes":  "2,3,4,5,6,7",
+    "iterations":  2,
+    "hvmagent_modes":  "SmartCpuGroups-10-sleep_ms",
+    "cpugroups_delay":  10000,
+    "ipi_delay":  1000,
+    "MinRootMask":  "0xfffffff",
+    "hvmagent":  {
+                     "path":  "C:\\hvm\\hvmagent.exe",
+                     "extra_args":  " --pin_primary "
+                 },
+    "smart_hvmagent":  {
+                           "path":  "C:\\hvm\\harvestvm.exe",
+                           "duration_sec":  62,
+                           "extra_args":  ""
+                       },
+    "LatSensitive":  {
+                         "vcpus":  10,
+                         "HwThreadCountPerCore":  1,
+                         "WorkerCnt":  8,
+                         "Duration":  62,
+                         "TracePath":  "trace-8-worker-160-qps-0.2-load-4-wakeups-const.txt"
+                     },
+    "Memcached":  {
+                      "vcpus":  10,
+                      "ServerThreads":  10,
+                      "ServerMemoryMB":  4096,
+                      "ClientThreads":  6,
+                      "ClientQps":  100000,
+                      "HwThreadCountPerCore":  1
+                  },
+    "CPUBully":  {
+                     "vcpus":  12,
+                     "HwThreadCountPerCore":  1,
+                     "Timeout":  1,
+                     "Workers":  12,
+                     "HvmAgentAffinity":  0,
+                     "WarmupSeconds":  0
+                 },
+    "IndexServe":  {
+                       "vcpus":  11,
+                       "HwThreadCountPerCore":  1,
+                       "GetCaptionXLAWarmUpLogParameters":  "-q -SaasQueryPlan -LargeQueryLog -uniqueTraceIds -printPercentileLatencies -n 5 -c 10",
+                       "WarmUpLogPath":  "D:\\data\\querylogs\\warmup_query.log",
+                       "WarmUpLogQps":  2000,
+                       "RunWarmUpQueries":  1,
+                       "GetCaptionXLAQueryLogParameters":  "-q -SaasQueryPlan -LargeQueryLog -uniqueTraceIds -printPercentileLatencies -n 5 -c 10",
+                       "QueryLogPath":  "D:\\data\\querylogs\\PROD_2019-07-01_WebPrecision_Draco_25262_saaslego.tsv",
+                       "QueryLogPath_1":  "D:\\data\\querylogs\\warmup_query.log",
+                       "Orig_QueryLogPath":  "D:\\data\\querylogs\\PROD_2017-08-29_WebPrecision_Draco_24714.tsv",
+                       "QueryLogQps":  500,
+                       "DurationSec":  60,
+                       "SaasQueryPlan":  " -SaasQueryPlan -LargeQueryLog ",
+                       "WarmupSeconds":  10
+                   },
+    "HostCountersFile":  "HostPerformanceCounters.csv",
+    "HostCounters":  [
+                         "\\Hyper-V Hypervisor Virtual Processor(_Total)\\% Total Run Time",
+                         "\\Hyper-V Hypervisor Virtual Processor(_Total)\\CPU Wait Time Per Dispatch",
+                         "\\Hyper-V Hypervisor Logical Processor(_Total)\\% Total Run Time",
+                         "\\Hyper-V Hypervisor Logical Processor(_Total)\\% Hypervisor Run Time",
+                         "\\Hyper-V Hypervisor Logical Processor(_Total)\\% Guest Run Time",
+                         "\\Hyper-V Hypervisor Virtual Processor(*)\\% Total Run Time",
+                         "\\Hyper-V Hypervisor Logical Processor(*)\\% Total Run Time",
+                         "\\Hyper-V Hypervisor Logical Processor(*)\\% Guest Run Time"
+                     ]
+}

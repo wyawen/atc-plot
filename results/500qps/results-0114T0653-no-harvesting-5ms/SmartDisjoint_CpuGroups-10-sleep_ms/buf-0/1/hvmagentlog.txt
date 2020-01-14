@@ -1,0 +1,97 @@
+MODE: DISJOINT_CPUGROUPS
+LEARNING_ALGO: CSOAA
+output_csv: C:\hvm\Results-010\indexserve\new-var-delay\bully\500qps\results-0114T0653-no-harvesting-5ms\SmartDisjoint_CpuGroups-10-sleep_ms\buf-0\1\hvmagent.csv
+primaryNames: IndexServe
+hvmNames: CPUBully
+RUN_DURATION_SEC: 60
+bufferSize: 0
+REACTIVE_FIXED_BUFFER_MODE: 0
+DELAY_MS: 0
+LEARNING_MODE: 0
+PRED_ONE_OVER: 0
+FIXED_DELAY: 0
+LEARNING_MS: 5
+TIMING: 0
+DEBUG: 0
+NO_HARVESTING: 1
+PRIMARY_ALONE: 0
+FEEDBACK: 0
+FEEDBACK_MS: 0
+SLEEP_MS: 10
+PRIMARY_SIZE: 11
+MINROOT_MASK: 4095
+dropBadFeatures: 0
+read_cpu_sleep_us: 50
+updatePrimary: 1
+DEBUG_PEAK: 0
+LOGGING: 1
+cost_function: 0
+FIXED_BUFFER_MODE: 0
+MAX_HVM_CORES: 24
+MIN_HVM_CORES: 1
+LpIndex NodeNumber PackageId CoreId RootVpIndex
+------- ---------- --------- ------ -----------
+      0          0         0      0           0
+      1          0         0      1           1
+      2          0         0      2           2
+      3          0         0      3          -1
+      4          0         0      4          -1
+      5          0         0      5          -1
+      6          0         0      8          -1
+      7          0         0      9          -1
+      8          0         0     10          -1
+      9          0         0     11          -1
+     10          0         0     12          -1
+     11          0         0     13          -1
+     12          0         0     16          -1
+     13          0         0     17          -1
+     14          0         0     18          -1
+     15          0         0     19          -1
+     16          0         0     20          -1
+     17          0         0     21          -1
+     18          0         0     24          -1
+     19          0         0     25          -1
+     20          0         0     26          -1
+     21          0         0     27          -1
+     22          0         0     28          -1
+     23          0         0     29          -1
+Physical Cores: 24 MinrootLPs: 12 MinRootMask: 0x0000000000000fff
+Detected 24 LPs on machine
+HVMAgent initialized
+Mask 1: 1000
+Mask 2: 3000
+Mask 3: 7000
+Mask 4: f000
+Mask 5: 1f000
+Mask 6: 3f000
+Mask 7: 7f000
+Mask 8: ff000
+Mask 9: 1ff000
+Mask 10: 3ff000
+Mask 11: 7ff000
+Mask 12: fff000
+Initializing handle for: IndexServewith _numcore:11
+Mask 1: 800000
+Mask 2: c00000
+Mask 3: e00000
+Mask 4: f00000
+Mask 5: f80000
+Mask 6: fc0000
+Mask 7: fe0000
+Mask 8: ff0000
+Mask 9: ff8000
+Mask 10: ffc000
+Mask 11: ffe000
+Mask 12: fff000
+Initializing handle for: CPUBullywith _numcore:1
+csoaa: vw initialized with 11 classes.
+************************
+DO NOT always update learning model (cost_function eval)
+drop data for reg
+update under-predictions with (correct_label = observed_peak+1)
+use current busy
+************************
+HVM agent starting: Tue Jan 14 07:09:37 2020
+
+logs written
+Exiting

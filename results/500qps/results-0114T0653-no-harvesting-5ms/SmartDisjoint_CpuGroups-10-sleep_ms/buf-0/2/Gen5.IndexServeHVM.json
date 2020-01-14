@@ -1,0 +1,58 @@
+{
+    "ScenarioName":  "Gen5.IndexServeHVM",
+    "ScenarioDuration":  1,
+    "ConcurrentBenchmarks":  [
+                                 {
+                                     "BenchmarkName":  "IndexServe",
+                                     "NumberOfInstances":  1,
+                                     "VMConfig":  {
+                                                      "VCPUCount":  11,
+                                                      "MemorySizeInGB":  128,
+                                                      "Generation":  1,
+                                                      "HwThreadCountPerCore":  1
+                                                  },
+                                     "CustomInputs":  {
+                                                          "GetCaptionXLAWarmUpLogParameters":  "-q -SaasQueryPlan -LargeQueryLog -uniqueTraceIds -printPercentileLatencies -n 5 -c 10",
+                                                          "WarmUpLogPath":  "D:\\data\\querylogs\\warmup_query.log",
+                                                          "WarmUpLogQps":  2000,
+                                                          "RunWarmUpQueries":  1,
+                                                          "GetCaptionXLAQueryLogParameters":  "-q -SaasQueryPlan -LargeQueryLog -uniqueTraceIds -printPercentileLatencies -n 5 -c 10",
+                                                          "QueryLogPath":  "D:\\data\\querylogs\\PROD_2019-07-01_WebPrecision_Draco_25262_saaslego.tsv",
+                                                          "QueryLogQps":  500,
+                                                          "NumQueries":  30000,
+                                                          "WarmupSeconds":  10,
+                                                          "HostPerfCounters":  "\\Hyper-V Hypervisor Virtual Processor(_Total)\\% Total Run Time,\\Hyper-V Hypervisor Virtual Processor(_Total)\\CPU Wait Time Per Dispatch,\\Hyper-V Hypervisor Logical Processor(_Total)\\% Total Run Time,\\Hyper-V Hypervisor Logical Processor(_Total)\\% Hypervisor Run Time,\\Hyper-V Hypervisor Logical Processor(_Total)\\% Guest Run Time,\\Hyper-V Hypervisor Virtual Processor(*)\\% Total Run Time,\\Hyper-V Hypervisor Logical Processor(*)\\% Total Run Time,\\Hyper-V Hypervisor Logical Processor(*)\\% Guest Run Time",
+                                                          "HostPerfCountersPath":  "C:\\hvm\\Results-010\\indexserve\\new-var-delay\\bully\\500qps\\results-0114T0653-no-harvesting-5ms\\SmartDisjoint_CpuGroups-10-sleep_ms\\buf-0\\2\\HostPerfCounters.csv"
+                                                      },
+                                     "ReuseExistingInstances":  false,
+                                     "DisableCleanupVMInstances":  false,
+                                     "WarmupTimeInSeconds":  20
+                                 },
+                                 {
+                                     "BenchmarkName":  "CPUBully",
+                                     "NumberOfInstances":  1,
+                                     "VMConfig":  {
+                                                      "VCPUCount":  12,
+                                                      "MemorySizeInGB":  4,
+                                                      "Generation":  1,
+                                                      "HwThreadCountPerCore":  1
+                                                  },
+                                     "CustomInputs":  {
+                                                          "Workers":  12,
+                                                          "Timeout":  1,
+                                                          "HvmAgentPath":  "C:\\hvm\\harvestvm.exe",
+                                                          "HvmAgentArgs":  "--buffer 0 --csv C:\\hvm\\Results-010\\indexserve\\new-var-delay\\bully\\500qps\\results-0114T0653-no-harvesting-5ms\\SmartDisjoint_CpuGroups-10-sleep_ms\\buf-0\\2\\hvmagent.csv --duration_sec 60 --primary_size 11  --primary_names IndexServe  --hvm_names CPUBully --debug_peak 0 --logging 1 --minroot_mask 0xfff --reactive_buffer_mode 0 --delay_ms 0 --mode Disjoint_CpuGroups  --learning_algo csoaa --learning_mode 0 --learning_ms 5 --debug 0 --no_harvesting 1 --primary_alone 0 --timing 0 --feedback 0 --feedback_ms 0 --sleep_ms 10 --drop_bad_features 0 --read_cpu_sleep_us 50 --update_primary 1 --pred_one_over 0 --fixed_delay 0   ",
+                                                          "HvmAgentLog":  "C:\\hvm\\Results-010\\indexserve\\new-var-delay\\bully\\500qps\\results-0114T0653-no-harvesting-5ms\\SmartDisjoint_CpuGroups-10-sleep_ms\\buf-0\\2\\hvmagentlog.txt",
+                                                          "HvmAgentPriority":  "High",
+                                                          "HvmAgentAffinity":  0,
+                                                          "LoggerPath":  "C:\\hvm\\HypervMinrootLogger.exe",
+                                                          "LoggerArgs":  "-f C:\\hvm\\Results-010\\indexserve\\new-var-delay\\bully\\500qps\\results-0114T0653-no-harvesting-5ms\\SmartDisjoint_CpuGroups-10-sleep_ms\\buf-0\\2\\log.dat -p 60 -m 0xfcfc",
+                                                          "LoggerLog":  "C:\\hvm\\Results-010\\indexserve\\new-var-delay\\bully\\500qps\\results-0114T0653-no-harvesting-5ms\\SmartDisjoint_CpuGroups-10-sleep_ms\\buf-0\\2\\loggerlog.txt",
+                                                          "WarmupSeconds":  0
+                                                      },
+                                     "ReuseExistingInstances":  false,
+                                     "DisableCleanupVMInstances":  false,
+                                     "WarmupTimeInSeconds":  0
+                                 }
+                             ]
+}
