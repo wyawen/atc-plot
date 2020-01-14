@@ -1,3 +1,5 @@
+#!/usr/local/bin/python
+import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
 import csv
@@ -11,6 +13,9 @@ import re
 
 from IPython.core.display import display, HTML
 display(HTML("<style>.container { width:100% !important; }</style>"))
+
+FIG_HEIGHT = 1.3
+PAGE_WIDTH = 7
 
 def isNaN(num):
     return num != num
@@ -28,21 +33,21 @@ class BufInfo:
         p = pd.read_csv(f)
         s = p.sort_values(by="Key Metric Name").sort_values(by="Benchmark", ascending=False)
         return s
-    
+
     def __init__(self, buf_dir, recompute = False, printAll = True):
         self.buf = os.path.basename(buf_dir)
         self.config = os.path.basename(os.path.dirname(buf_dir))
-        
+
         files = glob.glob(buf_dir + "/*/BenchmarkKeyMetrics.csv")
         csv = pd.concat([self.BenchmarkKeyMetrics(f) for f in files], keys = range(len(files))).round(4)
-        
+
         self.iters = 0
         for run_dir in [os.path.dirname(d) for d in glob.glob(buf_dir + "/*/")]:
             run_id = os.path.basename(run_dir)
             if printAll:
                 print "{}\t{}\t{}\t\t{}".format(self.config, self.buf, run_id, list(csv.loc[int(run_id)]["Key Metric Value"]))
             self.iters += 1
-        
+
         self.avg = OrderedDict()
         for b in list(csv.loc[0]["Key Metric Name"]):
             values = csv[csv["Key Metric Name"] == b]["Key Metric Value"]
@@ -68,7 +73,7 @@ class BufInfo:
 
 
 def process_directories(result_dir, recompute = False, printAll = True):
-    aggregate = "" 
+    aggregate = ""
 
     bufInfos = OrderedDict()
     for mode_dir in [os.path.dirname(d) for d in glob.glob(result_dir + "/*/")]:
@@ -81,27 +86,21 @@ def process_directories(result_dir, recompute = False, printAll = True):
             bufInfos[config][buf_label] = bufInfo.avg
 
             aggregate += "{}\t{}\t{}\t{}\n".format(config, buf_label, bufInfo.iters, bufInfo.avg.values())
-            
+
         aggregate += "\n"
-    
+
     keys = bufInfo.avg.keys()
     aggregate_header = "\n\nAggregated results:\nConfig\t\tBuffer\tIters\t ["+ ", ".join(keys) +"]\n\n"
     if printAll:
         print aggregate_header
         print aggregate
-    
+
     return (bufInfos, keys)
 
 
 def plotLatencyProgress(data, keys, labels, fmts, title="", xlabel="", ylabel="", savePath=None, figName=None, errorBar=False, hlineIS=False, \
                         hlineMem=False, colors=None, runTime=0):
-    plt.rcParams.update({'font.size': 13})
-    plt.rc('xtick', labelsize=15)
-    plt.rc('ytick', labelsize=15)
-    plt.rc("axes", labelsize=20)
-    plt.rc("axes", titlesize=22)
-    fig, ax = plt.subplots(1,1)
-    #plt.tight_layout()
+    fig, ax = plt.subplots(1,1,figsize=(PAGE_WIDTH/4.0, FIG_HEIGHT))
     #ax.set_xlim(0,4)
     #ax.set_ylim(80,400)
     if hlineIS:
@@ -116,23 +115,27 @@ def plotLatencyProgress(data, keys, labels, fmts, title="", xlabel="", ylabel=""
             x_data = runTime/x_data
         if not errorBar:
             if colors == None:
-                plt.plot(x_data, y_data, fmts[i], label=labels[i], ms=10)
+                plt.plot(x_data, y_data, fmts[i], label=labels[i], ms=5)
             else:
-                plt.plot(x_data, y_data, fmts[i], label=labels[i], ms=10, c=colors[i])
+                plt.plot(x_data, y_data, fmts[i], label=labels[i], ms=5, c=colors[i])
             #plt.plot(cg.loc["Progress"].values, cg.loc["P99(us)"].values, 'rx-', label="CpuGroups")
         else:
-            plt.errorbar(x_data, y_data, fmt=fmts[i], xerr=data[i].loc[keys[3]].values, yerr=data[i].loc[keys[1]].values, ecolor='black', capsize=2, label=labels[i])
+            plt.errorbar(x_data, y_data, fmt=fmts[i], xerr=data[i].loc[keys[3]].values, yerr=data[i].loc[keys[1]].values, ecolor='black',label=labels[i])
             #plt.errorbar(cg.loc["Progress"].values, cg.loc["P99(us)"].values, fmt='rx-', xerr=cg.loc["Progressstddev"].values, yerr=cg.loc["P99(us)stddev"].values, ecolor='g', capsize=2, label="CpuGroups")
 
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
     ax.set_title(title)#fig.suptitle(title)
-    plt.legend()
-    plt.tight_layout()
+    #plt.legend()
+    plt.tight_layout(pad=0.3, w_pad=0.0, h_pad=0.0)
     if savePath is not None:
         plt.savefig(savePath)
         plt.savefig(figName)
-    plt.show()
+    #plt.show()
+    fig_legend = plt.figure(figsize=(PAGE_WIDTH, 0.2))
+    fig_legend.legend(*ax.get_legend_handles_labels(), loc='center', ncol=4)
+    plt.savefig('legend.eps')
+
 
 
 
@@ -141,6 +144,10 @@ print result_dirs
 title="IndexServe (500QPS) + CPUBully"
 xlabel="Average Number of Cores Harvested"
 ylabel="P99 Latency (ms)"
+
+matplotlib.rcParams.update({'font.size': 6})
+matplotlib.rcParams['ps.useafm'] = True
+
 
 for PATH in result_dirs:
     print PATH
@@ -155,5 +162,5 @@ for PATH in result_dirs:
     labels = ["No Harvesting", "Fixed Buffer (7-2)", "SmartHarvest", "Linear Reg"]
     fmts   = ['ro', 'gx:', 'bD', 'm^']
 
-    fig = "is_500qps_bully.pdf"
+    fig = "is_500qps_bully.eps"
     plotLatencyProgress(data, keys, labels, fmts, title, xlabel, ylabel, savePath = PATH+"/fig.png", figName=fig, errorBar=False, hlineIS=True)
