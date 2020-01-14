@@ -98,43 +98,52 @@ def process_directories(result_dir, recompute = False, printAll = True):
     return (bufInfos, keys)
 
 
-def plotLatencyProgress(data, keys, labels, fmts, title="", xlabel="", ylabel="", savePath=None, figName=None, errorBar=False, hlineIS=False, \
+def plotLatencyProgress(data_all, keys, labels, fmts, title="", xlabel="", ylabel=["", ""], savePath=None, figName=None, errorBar=False, hlineIS=False, \
                         hlineMem=False, colors=None, runTime=0):
-    fig, ax = plt.subplots(1,1,figsize=(PAGE_WIDTH/4.0, FIG_HEIGHT))
-    #ax.set_xlim(0,4)
-    #ax.set_ylim(80,400)
-    if hlineIS:
-        ax.axhline(10, color='red', ls=':',lw=1)
-        #ax.axhline(data[0].loc[keys[0]].values[0]+1, color='red', ls=':',lw=1)
-    if hlineMem:
-        ax.axhline(130, color='red', ls=':',lw=1)
-    for i in range(len(data)):
-        y_data = data[i].loc[keys[0]].values
-        x_data = data[i].loc[keys[2]].values
-        if runTime:
-            x_data = runTime/x_data
-        if not errorBar:
-            if colors == None:
-                plt.plot(x_data, y_data, fmts[i], label=labels[i], ms=5)
-            else:
-                plt.plot(x_data, y_data, fmts[i], label=labels[i], ms=5, c=colors[i])
-            #plt.plot(cg.loc["Progress"].values, cg.loc["P99(us)"].values, 'rx-', label="CpuGroups")
+    ylabel_width = 0.15
+    for it, data in enumerate(data_all):
+        if it == 0 or it == 2:
+            width = PAGE_WIDTH / 4.0
         else:
-            plt.errorbar(x_data, y_data, fmt=fmts[i], xerr=data[i].loc[keys[3]].values, yerr=data[i].loc[keys[1]].values, ecolor='black',label=labels[i])
-            #plt.errorbar(cg.loc["Progress"].values, cg.loc["P99(us)"].values, fmt='rx-', xerr=cg.loc["Progressstddev"].values, yerr=cg.loc["P99(us)stddev"].values, ecolor='g', capsize=2, label="CpuGroups")
+            width = (PAGE_WIDTH-2*ylabel_width) / 4.0
+        fig, ax = plt.subplots(1,1,figsize=(PAGE_WIDTH/4.0, FIG_HEIGHT))
+        #ax.set_xlim(0,4)
+        #ax.set_ylim(80,400)
+        if hlineIS:
+            ax.axhline(10, color='red', ls=':',lw=1)
+            #ax.axhline(data[0].loc[keys[0]].values[0]+1, color='red', ls=':',lw=1)
+        if hlineMem:
+            ax.axhline(130, color='red', ls=':',lw=1)
+        for i in range(len(data)):
+            y_data = data[i].loc[keys[0]].values
+            x_data = data[i].loc[keys[2]].values
+            if runTime:
+                x_data = runTime/x_data
+            if not errorBar:
+                if colors == None:
+                    plt.plot(x_data, y_data, fmts[i], label=labels[i], ms=5)
+                else:
+                    plt.plot(x_data, y_data, fmts[i], label=labels[i], ms=5, c=colors[i])
+                #plt.plot(cg.loc["Progress"].values, cg.loc["P99(us)"].values, 'rx-', label="CpuGroups")
+            else:
+                plt.errorbar(x_data, y_data, fmt=fmts[i], xerr=data[i].loc[keys[3]].values, yerr=data[i].loc[keys[1]].values, ecolor='black',label=labels[i])
+                #plt.errorbar(cg.loc["Progress"].values, cg.loc["P99(us)"].values, fmt='rx-', xerr=cg.loc["Progressstddev"].values, yerr=cg.loc["P99(us)stddev"].values, ecolor='g', capsize=2, label="CpuGroups")
 
-    ax.set_xlabel(xlabel)
-    ax.set_ylabel(ylabel)
-    ax.set_title(title)#fig.suptitle(title)
-    #plt.legend()
-    plt.tight_layout(pad=0.3, w_pad=0.0, h_pad=0.0)
-    if savePath is not None:
-        plt.savefig(savePath)
-        plt.savefig(figName)
-    #plt.show()
-    fig_legend = plt.figure(figsize=(PAGE_WIDTH, 0.2))
-    fig_legend.legend(*ax.get_legend_handles_labels(), loc='center', ncol=4)
-    plt.savefig('legend.eps')
+        ax.set_xlabel(xlabel)
+        if it == 0:
+            ax.set_ylabel(ylabel[0], labelpad=0)
+        elif it == 2:
+            ax.set_ylabel(ylabel[1], labelpad=0)
+        #ax.set_title(title)#fig.suptitle(title)
+        #plt.legend()
+        plt.tight_layout(pad=0.3, w_pad=0.0, h_pad=0.0)
+        if savePath is not None:
+            plt.savefig(savePath)
+            plt.savefig(figName[it])
+        #plt.show()
+        fig_legend = plt.figure(figsize=(PAGE_WIDTH, 0.2))
+        fig_legend.legend(*ax.get_legend_handles_labels(), loc='center', ncol=4)
+        plt.savefig('legend.eps')
 
 
 
@@ -142,8 +151,8 @@ def plotLatencyProgress(data, keys, labels, fmts, title="", xlabel="", ylabel=""
 result_dirs = sorted(glob.glob("results/500qps"))
 print result_dirs
 title="IndexServe (500QPS) + CPUBully"
-xlabel="Average Number of Cores Harvested"
-ylabel="P99 Latency (ms)"
+xlabel="Avg(#Harvested Cores)"
+ylabel=["P99 Latency (us)", "P99 Latency (ms)"]
 
 matplotlib.rcParams.update({'font.size': 6})
 matplotlib.rcParams['ps.useafm'] = True
@@ -159,8 +168,10 @@ for PATH in result_dirs:
             pd.DataFrame(bufInfo["learning-1-5ms-reg"])
            ]
 
+    data_all = [data, data, data, data] # substitute with the right data
+
     labels = ["No Harvesting", "Fixed Buffer (7-2)", "SmartHarvest", "Linear Reg"]
     fmts   = ['ro', 'gx:', 'bD', 'm^']
 
-    fig = "is_500qps_bully.eps"
-    plotLatencyProgress(data, keys, labels, fmts, title, xlabel, ylabel, savePath = PATH+"/fig.png", figName=fig, errorBar=False, hlineIS=True)
+    figs = ["mem_20k_bully.eps", "mem_40k_bully.eps", "is_500qps_bully.eps", "is_1500qps_bully.eps"]
+    plotLatencyProgress(data_all, keys, labels, fmts, title, xlabel, ylabel, savePath = PATH+"/fig.png", figName=figs, errorBar=False, hlineIS=True)
